@@ -1,0 +1,390 @@
+/* ==========================================================
+   Semeia+ — Estilos globais
+   Foco em: legibilidade, contraste, layout simples e responsivo
+   ========================================================== */
+
+/* ------------------------------
+   Variáveis globais
+------------------------------ */
+:root {
+  --bg: #0f172a;
+  --brand-500: #10b981;
+  --brand-600: #059669;
+  --brand-700: #047857;
+  --danger: #dc2626;
+  --border: #e5e7eb;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --shadow: 0 10px 30px rgba(15,23,42,0.15);
+}
+
+/* ------------------------------
+   Reset e base
+------------------------------ */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f8fafc;
+  color: var(--text);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 70px;
+}
+
+main { flex: 1; }
+
+/* ==========================================================
+   TOPBAR — FIXA, MAIOR, COM LOGO GRANDE
+   ========================================================== */
+
+.topbar {
+  background: linear-gradient(135deg, var(--brand-700), var(--brand-500));
+  color: #fff;
+  padding: 22px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+
+.topbar .brand img {
+  height: 90px;
+  width: auto;
+}
+
+.topbar nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.topbar a:hover {
+  background: rgba(255,255,255,0.16);
+}
+
+.topbar a.active {
+  background: #fff;
+  color: var(--brand-700);
+}
+
+/* ==========================================================
+   Layout geral
+   ========================================================== */
+
+.container {
+  width: min(1100px, 94%);
+  margin: 20px auto;
+}
+
+/* ==========================================================
+   HERO PADRÃO
+   ========================================================== */
+
+.hero {
+  min-height: calc(100vh - 60px);
+  display: grid;
+  place-items: center;
+  background: #020617;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(45,212,191,0.28), transparent 55%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: min(960px, 96%);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+}
+
+/* ==========================================================
+   LOGIN — FUNDO FIXO
+   ========================================================== */
+
+body[data-page="login"] .hero {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("viva+.png") center/cover no-repeat fixed;
+  padding: 40px 20px;
+}
+
+body[data-page="login"] .hero::before {
+  content: none;
+}
+
+body[data-page="login"] .hero-inner {
+  width: min(420px, 90%);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* ==========================================================
+   QUEM SOMOS — NOVO LAYOUT
+   ========================================================== */
+
+/* Fundo inteirâo verde */
+body[data-page="quem-somos"] {
+  background: linear-gradient(135deg, var(--brand-700), var(--brand-500)) !important;
+}
+
+/* Main cobrindo a tela toda */
+body[data-page="quem-somos"] main {
+  min-height: calc(100vh - 160px); /* topbar + footer */
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+body[data-page="quem-somos"] .quem-somos-box {
+  background: #ffffff;
+  color: #333;
+  padding: 40px 50px;
+  max-width: 900px;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+  text-align: left;
+  line-height: 1.6;
+}
+
+body[data-page="quem-somos"] .quem-somos-box h1 {
+  font-size: 2.6rem;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: var(--brand-700);
+}
+
+body[data-page="quem-somos"] .quem-somos-box .descricao {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+body[data-page="quem-somos"] .quem-somos-box p {
+  font-size: 1.15rem;
+  margin-bottom: 18px;
+}
+
+body[data-page="quem-somos"] .quem-somos-box ul {
+  margin: 20px 0 30px;
+  padding-left: 22px;
+}
+
+body[data-page="quem-somos"] .quem-somos-box li {
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+}
+
+body[data-page="quem-somos"] .card {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* ==========================================================
+   CARD (uso geral)
+   ========================================================== */
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+/* ==========================================================
+   Formulários
+   ========================================================== */
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.input, select, textarea {
+  width: 100%;
+  padding: 10px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font: inherit;
+}
+
+.input:focus, select:focus, textarea:focus {
+  outline: 2px solid rgba(16,185,129,0.35);
+  border-color: var(--brand-600);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.help {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.grid { display: grid; gap: 14px; }
+.cols-2 { grid-template-columns: 1fr 1fr; }
+
+/* ==========================================================
+   Botões
+   ========================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  cursor: pointer;
+  background: #e5e7eb;
+}
+
+.btn-primary {
+  background: var(--brand-600);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--brand-700);
+}
+
+/* ==========================================================
+   Listas e tabelas
+   ========================================================== */
+
+.list { display: grid; gap: 12px; }
+
+.item {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 12px;
+  background: #fff;
+}
+
+/* ==========================================================
+   Toast
+   ========================================================== */
+
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #111827;
+  color: #f9fafb;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-size: 0.88rem;
+  display: none;
+  z-index: 1000;
+}
+
+.toast.show { display: block; }
+
+/* ==========================================================
+   Modal
+   ========================================================== */
+
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+}
+
+.hidden { display: none; }
+
+/* ==========================================================
+   Footer fixo
+   ========================================================== */
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--brand-700), var(--brand-500));
+  color: #ecfdf5;
+  font-size: 0.92rem;
+  z-index: 900;
+}
+
+/* ==========================================================
+   Responsivo
+   ========================================================== */
+
+@media (max-width: 800px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .cols-2 { grid-template-columns: 1fr; }
+}
+/* ==========================================================
+   Modal — corrigido com bloco branco
+   ========================================================== */
+
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.45); /* escurece o fundo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+}
+
+.modal {
+  background: #ffffff;                /* bloco branco */
+  padding: 30px;                      /* espaço interno */
+  border-radius: 18px;                /* arredondado */
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25); /* sombra moderna */
+  width: min(480px, 90%);             /* responsivo */
+  max-width: 520px;
+  text-align: left;                   /* mantém o texto organizado */
+}
+
+.hidden { 
+  display: none !important; 
+}

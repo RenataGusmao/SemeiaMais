@@ -1,85 +1,99 @@
-# **Semeia+**
+# 🌱 Semeia+ — Plataforma Digital para Gestão de Demandas de Sementes
+Sistema web responsivo para cadastro, acompanhamento, expedição e transparência de solicitações de sementes destinadas à agricultura familiar.
+Desenvolvido com foco em usabilidade, rastreabilidade (QR Code), inclusão digital, gestão eficiente e controle de processos por diferentes perfis de usuário.
 
-O sistema foi concebido para apoiar o Programa de Distribuição de Sementes desenvolvido por órgãos públicos estaduais, visando otimizar todo o ciclo de vida das sementes — da aquisição à entrega final — com rastreabilidade, controle logístico e transparência pública.
+🚀 Objetivos do Sistema
 
-O banco de dados reflete a realidade de um ecossistema formado por fornecedores, gestores, armazéns, cooperativas, agricultores e cidadãos, integrando todas as etapas do processo de forma padronizada e auditável.
+✔ Automatizar o processo de solicitação de sementes
+✔ Garantir acompanhamento eficiente do status da demanda
+✔ Permitir rastreamento via QR Code
+✔ Oferecer portal de transparência pública
+✔ Gerar relatórios em PDF com histórico de entregas
+✔ Melhorar a experiência do usuário (UX) e acessibilidade
 
-**Contexto e Objetivo**
+👥 Perfis de Usuários
+Perfil	Funções permitidas
+Agricultor	Cadastrar pedidos, visualizar status, cancelar antes da análise, histórico próprio
+Cooperativa	Mesmas funções do agricultor, com visão de pedidos vinculados à cooperativa
+Administrador	Acompanhar todos os pedidos, alterar status, excluir registros, gerar relatórios
+Público Geral	Acessar portal de transparência com histórico de entregas finalizadas
+🗂 Principais Funcionalidades
 
-O SEMEIA+ tem como missão garantir o gerenciamento eficiente da distribuição de sementes, oferecendo às secretarias de agricultura uma ferramenta digital capaz de registrar, monitorar e comprovar cada etapa da cadeia produtiva.
-No cenário real, o programa envolve:
-- Fornecedores que entregam lotes de sementes ao Estado.
-- Armazéns regionais responsáveis pelo armazenamento e movimentação dos lotes.
-- Gestores públicos que planejam e supervisionam a logística.
-- Cooperativas e agricultores que recebem as sementes distribuídas.
-- Cidadãos e órgãos fiscalizadores, que acessam informações de transparência.
+✨ Login com perfis diferentes e mensagens personalizadas
+✨ Cadastro de demanda com campos de observação
+✨ Acompanhamento filtro por status e data
+✨ Rastreamento automático via QR Code para cada pedido
+✨ Relatórios em PDF e histórico para administradores
+✨ Portal de Transparência aberto ao público
+✨ Página "Quem Somos" e "Perfil do Usuário"
 
-**Atores e Entidades Envolvidas**
+🛠 Tecnologias Utilizadas
+Camada	Tecnologias
+Front-end	HTML5, CSS3, JavaScript (puro), QRious.js, html2pdf.js
+Armazenamento Local	LocalStorage (dados mockados)
+Design Responsivo	Flexbox, Grid e boas práticas de UX/UI
+Estruturação	Organização modular por páginas, scripts e estilos separados
+📸 Estrutura de Telas (Front-End)
+/index.html                 → Login
+/cadastro-usuario.html      → Cadastro de usuário  
+/cadastro.html              → Cadastro de demanda  
+/acompanhamento.html        → Acompanhamento e gestão dos pedidos  
+/portal-transparencia.html  → Histórico público de entregas  
+/perfil.html                → Dados do usuário logado  
+/quem-somos.html            → Informações sobre o Semeia+  
+/style.css                  → Estilização global  
+/main.js                    → Lógica e funções principais
+/script.js                  → Funções auxiliares
 
-Todos os participantes do sistema são registrados como usuários, cada um com permissões específicas conforme seu papel:
-- Gestor: gerencia cadastros, expedições e relatórios.
-- Operador de Armazém: lança movimentações de estoque (entradas, saídas, transferências).
-- Agente de Distribuição: registra entregas a beneficiários.
-- Cooperativa: solicita e recebe sementes.
-- Cidadão: consulta dados públicos de distribuição.
+▶ Como Executar o Projeto
+🔘 Simples (local)
 
-A tabela usuario armazena dados de login e autenticação. As tabelas papel e usuario_papel determinam as funções e permissões de cada perfil. A tabela gestor detalha cargos e áreas de atuação dos gestores vinculados.
+Baixe ou clone o repositório
 
-**Fornecedores, Agricultores e Cooperativas**
+Abra index.html no navegador
 
-- Fornecedores: empresas registradas com CNPJ, responsáveis por fornecer os lotes de sementes ao Estado.
-- gricultores: beneficiários finais do programa, pessoas físicas com CPF e endereço vinculado a um município.
-- Cooperativas: associações ou grupos de produtores que podem receber sementes de forma coletiva.
-Cada um desses grupos possui uma tabela específica de endereço (endereco_agricultor, endereco_cooperativa, endereco_fornecedor), garantindo a rastreabilidade geográfica e evitando redundâncias.
+Inicie pelo login → admin/admin (modo administrador)
 
-**Municípios e Armazéns**
+Explore todos os fluxos do sistema
 
-Municípios (municipio): cadastrados com nome e UF, servem como referência para todas as operações logísticas.
-Armazéns (armazem): pontos físicos de estocagem de sementes, vinculados a municípios e endereços próprios.
-Esses armazéns funcionam como nós logísticos, recebendo e distribuindo sementes conforme as necessidades locais.
-Cada armazém pode conter múltiplos lotes, controlados pela tabela estoque_armazem_lote.
+🔌 Via Live Server (VSCode recomendado)
 
-**Espécies e Lotes**
+Clique com o botão direito em index.html → Open with Live Server
 
-O sistema gerencia espécies de sementes (ex.: milho, feijão, sorgo), cadastradas na tabela especie com nome comum e científico. Cada lote representa uma saca de sementes, registrada na tabela lote, associada à espécie e ao fornecedor.
-Os lotes possuem: Número único (numero_lote), Quantidade de sacas, Data de validade, QR Code para identificação digital.
-- O conceito de lote é central: toda movimentação, entrega ou expedição é realizada por lote, e não por peso (kg).
+🧪 Testes de Usabilidade (planejados)
 
-**Controle de Estoque e Movimentações**
+Teste com usuários reais (agricultores, técnicos e gestores)
 
-Para cada armazém, o sistema registra o saldo de cada lote em estoque_armazem_lote.
-As movimentações são controladas pela tabela movimentacao_esto, que registra:
-- ENTRADA: quando o lote chega ao armazém.
-- SAÍDA: quando o lote é retirado para entrega.
-- TRANSFERÊNCIA: quando o lote é movido entre armazéns.
-Cada movimentação registra o usuário responsável e a data/hora. Um gatilho (trigger) impede que o saldo de sacas fique negativo. O histórico é complementado pela tabela rastro_lote, que guarda todos os eventos relevantes (entrada, expedição, entrega, transferência), formando uma linha do tempo completa do ciclo da semente.
+Teste de usabilidade baseado em SUS (System Usability Scale)
 
-**Expedições e Entregas**
-Ordem de Expedição (ordem_expedicao). É criada pelo gestor para planejar a remessa de lotes a determinado município.
-Contém: Data prevista, Status (Planejada, Expedida, Concluída, Cancelada), Gestor responsável, Cooperativa solicitante. Os lotes incluídos nessa remessa são registrados em item_expedicao.
+Coleta via Microsoft Forms com métricas de tempo, cliques, erros e satisfação
 
-Entrega (entrega) registra o momento em que as sementes chegam ao destinatário final:
-- Pode ser uma cooperativa ou um agricultor (mas nunca ambos ao mesmo tempo).
-Essa exclusividade é garantida por um gatilho XOR, que impede inconsistências. Os lotes e suas quantidades estão em item_entrega, e o vínculo entre a entrega e a ordem de expedição está em entrega_ordem.
+💡 Possibilidades Futuras
 
-**Transparência e Auditoria**
+🔹 Integração com banco de dados real (Firebase ou Supabase)
+🔹 Módulo mobile com PWA
+🔹 Assinatura digital no laudo de confirmação
+🔹 API para expedição e logística de entrega
 
-A view vw_transparencia_distribuicao consolida dados de entregas: Município, Espécie de semente, Período (mês/ano), Total de sacas distribuídas. Ela serve de base para painéis públicos, relatórios de fiscalização e portais de transparência, promovendo o controle social sobre o programa.
+👨‍👩‍👧 Público-Alvo
 
-**Regras de Negócio no Banco**
+Agricultores familiares
 
-Triggers preventivos: 
-- Impedem saldo negativo em estoque;
-- Garantem consistência entre tipo de destinatário e campos informados em entrega;
-Chaves únicas: CPF (Agricultor), CNPJ (Fornecedor e Cooperativa), Número do lote.
+Cooperativas rurais
 
-Relacionamentos N:N: Entre usuario e papel; Entre entrega e ordem_expedicao.
-Integridade referencial: ON DELETE SET NULL para vínculos opcionais; ON DELETE RESTRICT para dados críticos (municípios, espécies, lotes).
+Técnicos do IPA
 
-**Síntese Geral**
+Gestores públicos
 
-O minimundo modelado no SEMEIA+ representa, de forma integrada e digitalizada, a cadeia de fornecimento e distribuição de sementes. Ele reflete a realidade de programas estaduais que buscam: 
-- Garantir eficiência logística.
-- Manter controle de estoque confiável.
-- Assegurar rastreabilidade total das sementes.
-- Promover transparência pública e prestação de contas.
+Comunidade (transparência)
+
+📄 Licença
+
+Este projeto está sob licença MIT — livre para uso acadêmico e social.
+
+🤝 Colaboração
+
+Sugestões, melhorias e contribuições são muito bem-vindas!
+Faça um pull request ou abra uma issue.
+
+✨ Semeia+: Porque semear é mais que plantar — é gerar futuro. 🌾
